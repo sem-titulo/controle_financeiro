@@ -14,7 +14,7 @@ let isRefreshing = false;
 
 function getCompany() {
     cookies = parseCookies();
-    const company = cookies['docs.company'];
+    const company = cookies['finance.company'];
 
     if (company) {
         return JSON.parse(company).companyId;
@@ -27,7 +27,7 @@ export const api = axios.create({
     baseURL: `${process.env.NEXT_PUBLIC_BACKEND_HOST ?? 'http://localhost:80'}`,
     headers: {
         'content-type': 'application/json',
-        Authorization: `Bearer ${cookies['docs.token']}`,
+        Authorization: `Bearer ${cookies['finance.token']}`,
         'x-company': getCompany(),
     },
 });
@@ -40,7 +40,7 @@ api.interceptors.response.use(
         // if (error.response.status === 401) {
         //     if (error.response.data?.code === 901) {
         //         cookies = parseCookies();
-        //         const { 'docs.refreshToken': refreshToken } = cookies;
+        //         const { 'finance.refreshToken': refreshToken } = cookies;
         //         const originalConfig = error.config;
 
         //         if (!isRefreshing) {
@@ -58,14 +58,14 @@ api.interceptors.response.use(
         //                 .then(response => {
         //                     const { token, refreshToken } = response.data;
 
-        //                     setCookie(undefined, 'docs.token', token, {
+        //                     setCookie(undefined, 'finance.token', token, {
         //                         maxAge: 60 * 60 * 12 * 1, // 1 hour
         //                     });
 
         //                     // Gravando o refreshToken no cookie
         //                     setCookie(
         //                         undefined,
-        //                         'docs.refreshToken',
+        //                         'finance.refreshToken',
         //                         refreshToken,
         //                         {
         //                             maxAge: 60 * 60 * 12 * 30, // 30 days

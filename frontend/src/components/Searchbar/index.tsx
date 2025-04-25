@@ -5,12 +5,22 @@ import { IOptions, Select } from '../Select';
 
 interface ISearchbarProps {
     options?: IOptions[];
-    setFilter?: (key) => void;
+    filter?: Record<string, any>;
+    setFilter?: (filters: Record<string, any>) => void;
 }
 
-export function Searchbar({ options = [], setFilter }: ISearchbarProps) {
+export function Searchbar({ options = [], filter = {}, setFilter }: ISearchbarProps) {
     const [field, setField] = useState('');
     const [text, setText] = useState('');
+
+    const handleSearch = () => {
+        if (field && text && setFilter) {
+            setFilter({
+                ...filter,
+                [field]: text, // chave dinâmica com valor do input
+            });
+        }
+    };
 
     return (
         <div className="flex flex-row shadow-md">
@@ -35,7 +45,7 @@ export function Searchbar({ options = [], setFilter }: ISearchbarProps) {
                 iconName="FaSearch"
                 pattern="action"
                 type="button"
-                onClick={() => setFilter({ field, text })}
+                onClick={handleSearch}
             >
                 Pesquisar
             </Button>

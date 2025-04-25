@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import usuario, authenticate
+from app.routes import usuario, authenticate, balanco
 
 app = FastAPI(
     title="Projeto Controle Financeiro",
@@ -17,4 +17,4 @@ app.add_middleware(
 
 app.include_router(usuario.router)
 app.include_router(authenticate.router)
-# app.include_router(notas.router)
+app.include_router(balanco.router)

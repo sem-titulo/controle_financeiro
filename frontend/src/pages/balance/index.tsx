@@ -23,10 +23,12 @@ const legends = {
     '9': 'text-red-500',
 };
 
-const baseRoute = '/documents';
-export default function Documents() {
+const baseRoute = '/balance';
+export default function Balance() {
     const [files, setFiles] = useState<FormData>();
-    const [filters, setFilters] = useState({});
+    const [filters, setFilters] = useState({
+        tipo: 'Saída'
+    });
     const [loading, setLoading] = useState(false);
 
     const [isNewOrderModalIfOpen, setisNewOrderModalIfOpen] = useState(false);
@@ -62,11 +64,10 @@ export default function Documents() {
     const formatData = useCallback(data => {
         return data.map(item => ({
             ...item,
-            legend:
-                item.status in legends ? legends[item.status] : 'text-black',
-            dateDelivery: item.dateDelivery
-                ? new Date(item.dateDelivery).toLocaleString()
-                : '',
+            valor: item.valor?.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+            }),
         }));
     }, []);
 
@@ -81,26 +82,37 @@ export default function Documents() {
                     <div className="h-full overflow-hidden flex flex-col space-y-4">
                         <Searchbar
                             setFilter={handleFilters}
+                            filter={filters}
                             options={[
                                 {
-                                    value: 'number',
-                                    text: 'Número da Nota',
-                                    key: 'number',
+                                    value: 'mes',
+                                    text: 'Mês',
+                                    key: 'mes',
                                 },
                                 {
-                                    value: 'nfekey',
-                                    text: 'Número da Chave',
-                                    key: 'nfekey',
+                                    value: 'ano',
+                                    text: 'Ano',
+                                    key: 'ano',
                                 },
                                 {
-                                    value: 'codeTrip',
-                                    text: 'Número da Viagem',
-                                    key: 'codeTrip',
+                                    value: 'tipo',
+                                    text: 'Tipo',
+                                    key: 'tipo',
+                                },
+                                {
+                                    value: 'categoria',
+                                    text: 'Categoria',
+                                    key: 'categoria',
+                                },
+                                {
+                                    value: 'tag',
+                                    text: 'Tag',
+                                    key: 'tag',
                                 },
                             ]}
                         />
                         <div className="h-full overflow-hidden flex flex-col space-y-4">
-                            <Buttonbar namePage="Nota Fiscal">
+                            <Buttonbar namePage="Despesas">
                                 <Button
                                     // className="h-12 w-16 md:w-32 bg-green-800 flex flex-row space-x-3 font-light hover:bg-green-900 items-center justify-center px-4 py-2 mr-2 text-gray-50 rounded-md tracking-wide"
                                     iconName="FaPaperclip"
@@ -127,23 +139,13 @@ export default function Documents() {
                             afterLoad={handleAfterLoad}
                             beforeLoad={handleBeforeLoad}
                             fields={[
-                                {
-                                    title: 'Status',
-                                    name: 'statusTxt',
-                                    legend: true,
-                                },
-                                { title: 'Número', name: 'docSerie' },
-                                {
-                                    title: 'Data de Entrega',
-                                    name: 'dateDelivery',
-                                },
-                                { title: 'Cliente', name: 'customerName' },
-                                {
-                                    title: 'Transportadora',
-                                    name: 'transporterName',
-                                },
-                                { title: 'Tipo do frete', name: 'typeFreight' },
-                                { title: 'Remetente', name: 'senderName' },
+                                { title: 'Fonte', name: 'fonte' },
+                                { title: 'Valor', name: 'valor' },
+                                { title: 'Mês', name: 'mes' },
+                                { title: 'Tag', name: 'tag' },
+                                // { title: 'Tipo', name: 'tipo' },
+                                { title: 'Categoria', name: 'categoria' },
+                                { title: 'Ano', name: 'ano' },
                             ]}
                         />
                     </div>

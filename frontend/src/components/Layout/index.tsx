@@ -61,7 +61,7 @@ export function Layout({ children }: ILayoutProps) {
                             Dashboard
                         </MenuItem>
                         <MenuGroup iconName="FaPlus" label="Cadastro">
-                            <MenuItem iconName="FaMap" href="/senders">
+                            <MenuItem iconName="FaMap" href="/balance">
                                 Despesas
                             </MenuItem>
                             <MenuItem iconName="FaTruck" href="/transporters">
