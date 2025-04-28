@@ -45,6 +45,7 @@ class DBConnection:
             self._connection[collection].insert_one(dados)
             return True
         except Exception as error:
+            print(error)
             return None
 
     def insert_many(self, collection: str, dados: List[dict]) -> bool:

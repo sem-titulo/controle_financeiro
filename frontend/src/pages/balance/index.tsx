@@ -26,9 +26,7 @@ const legends = {
 const baseRoute = '/balance';
 export default function Balance() {
     const [files, setFiles] = useState<FormData>();
-    const [filters, setFilters] = useState({
-        tipo: 'Saída'
-    });
+    const [filters, setFilters] = useState({});
     const [loading, setLoading] = useState(false);
 
     const [isNewOrderModalIfOpen, setisNewOrderModalIfOpen] = useState(false);
@@ -112,7 +110,7 @@ export default function Balance() {
                             ]}
                         />
                         <div className="h-full overflow-hidden flex flex-col space-y-4">
-                            <Buttonbar namePage="Despesas">
+                            <Buttonbar namePage="Transações">
                                 <Button
                                     // className="h-12 w-16 md:w-32 bg-green-800 flex flex-row space-x-3 font-light hover:bg-green-900 items-center justify-center px-4 py-2 mr-2 text-gray-50 rounded-md tracking-wide"
                                     iconName="FaPaperclip"
@@ -143,7 +141,7 @@ export default function Balance() {
                                 { title: 'Valor', name: 'valor' },
                                 { title: 'Mês', name: 'mes' },
                                 { title: 'Tag', name: 'tag' },
-                                // { title: 'Tipo', name: 'tipo' },
+                                { title: 'Tipo', name: 'tipo' },
                                 { title: 'Categoria', name: 'categoria' },
                                 { title: 'Ano', name: 'ano' },
                             ]}

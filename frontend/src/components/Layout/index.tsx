@@ -61,23 +61,11 @@ export function Layout({ children }: ILayoutProps) {
                             Dashboard
                         </MenuItem>
                         <MenuGroup iconName="FaPlus" label="Cadastro">
-                            <MenuItem iconName="FaMap" href="/balance">
-                                Despesas
+                            <MenuItem iconName="FaExchangeAlt" href="/balance">
+                                Transações
                             </MenuItem>
-                            <MenuItem iconName="FaTruck" href="/transporters">
-                                Receitas
-                            </MenuItem>
-                            <MenuItem
-                                iconName="FaBriefcaseMedical"
-                                href="/occurrences"
-                            >
-                                Importar Despesas
-                            </MenuItem>
-                            <MenuItem
-                                iconName="FaBriefcaseMedical"
-                                href="/occurrences"
-                            >
-                                Importar Receitas
+                            <MenuItem iconName="FaSyncAlt" href="/recurrent">
+                                Transações Recorrentes
                             </MenuItem>
                         </MenuGroup>
                         <MenuGroup iconName="FaPlus" label="Investimentos">

@@ -12,7 +12,7 @@
             "host": "localhost",
             "pathMappings": [
                 {
-                  "localRoot": "${workspaceFolder}/app",
+                  "localRoot": "${workspaceFolder}/backend/app",
                   "remoteRoot": "/app"
                 }
             ]
