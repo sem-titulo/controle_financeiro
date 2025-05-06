@@ -27,28 +27,29 @@ class BalancoModel(BaseModel):
             "Inter PF", "Inter PJ", "Inter Cartão", "Nubank Cartão", "Nubank PF", "Caju"
         ]
     ] = None
-    categoria: Optional[
-        Literal[
-            "Alimentação",
-            "Transporte",
-            "Moradia",
-            "Educação",
-            "Saúde",
-            "Lazer",
-            "Investimentos",
-            "Roupas",
-            "Viagem",
-            "Assinaturas",
-            "Impostos",
-            "Doações",
-            "Pets",
-            "Serviços",
-            "Salário",
-            "Freelance",
-            "Venda",
-            "Outros",
-        ]
-    ] = None
+    categoria: Optional[str] = "Outros"
+    # categoria: Optional[
+    #     Literal[
+    #         "Alimentação",
+    #         "Transporte",
+    #         "Moradia",
+    #         "Educação",
+    #         "Saúde",
+    #         "Lazer",
+    #         "Investimentos",
+    #         "Roupas",
+    #         "Viagem",
+    #         "Assinaturas",
+    #         "Impostos",
+    #         "Doações",
+    #         "Pets",
+    #         "Serviços",
+    #         "Salário",
+    #         "Freelance",
+    #         "Venda",
+    #         "Outros",
+    #     ]
+    # ] = None
 
 
 class BalancoAtualizacaoModel(BaseModel):

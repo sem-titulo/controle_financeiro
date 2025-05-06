@@ -39,24 +39,32 @@ export default function Balance() {
         setisNewOrderModalIfOpen(false);
     }, []);
 
-    const handleCreateInvoice: SubmitHandler<IFormProps> = async () => {
+    const handleCreateBalance: SubmitHandler<IFormProps> = async data => {
         try {
-            if (files.getAll('files').length > 0) {
-                await api.post(`${baseRoute}/importall-xml`, files);
-            } else {
+            if (!files || files.getAll('file').length === 0) {
                 showNotification({
-                    message: 'Nenhum arquivo selecionado para envio.',
+                    message: 'Nenhum arquivo selecionado.',
                     type: 'error',
                 });
+                return;
             }
-        } catch (error) {
+
+            files.append('mes', data.mes);
+            files.append('ano', String(data.ano));
+            files.append('tipo_arquivo', data.tipo_arquivo);
+
+            await api.post('/balance/upload', files);
+            showNotification({ message: 'Importação concluída com sucesso.' });
+        } catch (error: any) {
             showNotification({
-                message: error.response.data.message,
+                message:
+                    error?.response?.data?.detail ||
+                    'Erro ao importar arquivo.',
                 type: 'error',
             });
+        } finally {
+            handleCloseNewOrder();
         }
-
-        handleCloseNewOrder();
     };
 
     const formatData = useCallback(data => {
@@ -142,6 +150,7 @@ export default function Balance() {
                                 { title: 'Mês', name: 'mes' },
                                 { title: 'Tag', name: 'tag' },
                                 { title: 'Tipo', name: 'tipo' },
+                                { title: 'Obs', name: 'observacao' },
                                 { title: 'Categoria', name: 'categoria' },
                                 { title: 'Ano', name: 'ano' },
                             ]}
@@ -152,7 +161,7 @@ export default function Balance() {
             {isNewOrderModalIfOpen ? (
                 <DragDrop
                     handleCloseModal={handleCloseNewOrder}
-                    handleSubmitModal={handleCreateInvoice}
+                    handleSubmitModal={handleCreateBalance}
                     setFiles={setFiles}
                 />
             ) : null}
