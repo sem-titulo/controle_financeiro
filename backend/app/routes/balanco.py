@@ -103,6 +103,7 @@ def listar_balanco(
     ano: int = Query(None),
     tipo: str = Query(None),
     categoria: str = Query(None),
+    fonte: str = Query(None),
     tag: str = Query(None),
     current_user=Depends(validador_rota),
 ):
@@ -120,6 +121,8 @@ def listar_balanco(
         filtros["categoria"] = categoria
     if tag:
         filtros["tag"] = tag
+    if fonte:
+        filtros["fonte"] = {"$regex": fonte, "$options": "i"}
 
     print("filtros")
     print(filtros)

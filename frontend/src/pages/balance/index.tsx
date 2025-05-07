@@ -115,7 +115,13 @@ export default function Balance() {
                                     text: 'Tag',
                                     key: 'tag',
                                 },
+                                {
+                                    value: 'fonte',
+                                    text: 'Fonte',
+                                    key: 'fonte',
+                                },
                             ]}
+                            allowMultiple
                         />
                         <div className="h-full overflow-hidden flex flex-col space-y-4">
                             <Buttonbar namePage="Transações">
