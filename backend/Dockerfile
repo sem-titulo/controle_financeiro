@@ -20,4 +20,4 @@ RUN pip install -q --no-cache-dir --upgrade -r ./requirements/$ENVIRONMENT.txt
 EXPOSE 80
 
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80", "--reload", "--log-level", "info", "--use-colors", "--ws-ping-timeout=-1", "--ws-ping-interval=300", "--log-config", ".log-config.yml"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80", "--reload", "info", "--use-colors", "--ws-ping-timeout=-1", "--ws-ping-interval=300"]
