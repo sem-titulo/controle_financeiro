@@ -47,7 +47,7 @@ export function Layout({ children }: ILayoutProps) {
                     <MenuTop>
                         <Logo
                             vertical
-                            addClassName="hidden md:block bg-white rounded-md p-1"
+                            addClassName="hidden md:block rounded-md p-1"
                         />
                         <Button
                             className="block md:hidden"

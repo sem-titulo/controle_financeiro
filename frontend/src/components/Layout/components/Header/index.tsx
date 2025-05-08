@@ -16,7 +16,7 @@ export default function Header({ onButtonClick, addClassName }: IHeaderProps) {
         <header
             className={`py-3 px-4 md:p-0 bg-slate-700 flex flex-row justify-between md:justify-end items-center shadow-2xl ${addClassName}`}
         >
-            <Logo addClassName="md:hidden bg-white rounded-md p-1" />
+            <Logo addClassName="md:hidden bg-slate-700 rounded-md p-1" />
             <div className="flex justify-center items-center space-x-2">
                 <div className="hidden md:flex flex-col items-end">
                     <span className="font-light text-sm">{user?.name}</span>
