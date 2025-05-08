@@ -36,7 +36,14 @@ const schema = yup.object({
     valor: yup
         .number()
         .required('Valor é obrigatório.')
-        .typeError('Valor deve ser numérico.'),
+        .typeError('Valor deve ser numérico.')
+        .transform((value, originalValue) => {
+            if (!originalValue) return value;
+            // Handle both comma and dot decimal separators
+            return typeof originalValue === 'string' 
+                ? parseFloat(originalValue.replace(',', '.'))
+                : value;
+        }),
     tipo: yup
         .string()
         .oneOf(['Entrada', 'Saída'])
@@ -185,7 +192,7 @@ export default function RecurrentForm() {
                 />
                 <Input
                     label="Valor"
-                    type="number"
+                    type="text"
                     {...register('valor')}
                     error={formState.errors.valor}
                     readOnly={mode !== 'edit' && mode !== 'insert'}

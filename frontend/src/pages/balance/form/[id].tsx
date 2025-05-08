@@ -33,7 +33,14 @@ const balancoSchema = yup
         valor: yup
             .number()
             .required('Valor é obrigatório.')
-            .typeError('Valor deve ser numérico.'),
+            .typeError('Valor deve ser numérico.')
+            .transform((value, originalValue) => {
+                if (!originalValue) return value;
+                // Handle both comma and dot decimal separators
+                return typeof originalValue === 'string' 
+                    ? parseFloat(originalValue.replace(',', '.'))
+                    : value;
+            }),
         mes: yup.string().required('Mês é obrigatório.'),
         ano: yup.number().typeError('Ano deve ser um número.').nullable(),
         tipo: yup.string().nullable(),
@@ -160,7 +167,7 @@ export default function FormBalanco() {
                 />
                 <Input
                     label="Valor"
-                    type="number"
+                    type="text"
                     {...register('valor')}
                     error={formState.errors.valor}
                     readOnly={mode === 'read'}
