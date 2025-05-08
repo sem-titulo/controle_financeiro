@@ -9,7 +9,13 @@ import {
     Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { CircleDollarSign, ArrowDownCircle, ArrowUpCircle, Plus, X } from 'lucide-react';
+import {
+    CircleDollarSign,
+    ArrowDownCircle,
+    ArrowUpCircle,
+    Plus,
+    X,
+} from 'lucide-react';
 import { Input } from '../../components/Input';
 import { api } from '../../services/api';
 
@@ -38,7 +44,9 @@ const mesesOrdenados = [
 ];
 
 export default function Dashboard() {
-    const [selectedYears, setSelectedYears] = useState([new Date().getFullYear()]);
+    const [selectedYears, setSelectedYears] = useState([
+        new Date().getFullYear(),
+    ]);
     const [resumo, setResumo] = useState({});
     const [chartView, setChartView] = useState('all');
 
@@ -105,8 +113,12 @@ export default function Dashboard() {
             return [
                 {
                     label: `Receitas ${year}`,
-                    data: mesesOrdenados.map(mes => yearData[mes]?.entradas || 0),
-                    backgroundColor: `rgba(16, 185, 129, ${0.5 + (selectedYears.indexOf(year) * 0.15)})`,
+                    data: mesesOrdenados.map(
+                        mes => yearData[mes]?.entradas || 0,
+                    ),
+                    backgroundColor: `rgba(16, 185, 129, ${
+                        0.5 + selectedYears.indexOf(year) * 0.15
+                    })`,
                     borderColor: 'rgb(16, 185, 129)',
                     borderWidth: 1,
                     hidden: chartView === 'expenses' || chartView === 'net',
@@ -114,15 +126,21 @@ export default function Dashboard() {
                 {
                     label: `Despesas ${year}`,
                     data: mesesOrdenados.map(mes => yearData[mes]?.saidas || 0),
-                    backgroundColor: `rgba(220, 38, 38, ${0.5 + (selectedYears.indexOf(year) * 0.15)})`,
+                    backgroundColor: `rgba(220, 38, 38, ${
+                        0.5 + selectedYears.indexOf(year) * 0.15
+                    })`,
                     borderColor: 'rgb(220, 38, 38)',
                     borderWidth: 1,
                     hidden: chartView === 'income' || chartView === 'net',
                 },
                 {
                     label: `Saldo ${year}`,
-                    data: mesesOrdenados.map(mes => yearData[mes]?.liquido || 0),
-                    backgroundColor: `rgba(234, 179, 8, ${0.5 + (selectedYears.indexOf(year) * 0.15)})`,
+                    data: mesesOrdenados.map(
+                        mes => yearData[mes]?.liquido || 0,
+                    ),
+                    backgroundColor: `rgba(234, 179, 8, ${
+                        0.5 + selectedYears.indexOf(year) * 0.15
+                    })`,
                     borderColor: 'rgb(234, 179, 8)',
                     borderWidth: 1,
                     hidden: chartView === 'income' || chartView === 'expenses',
@@ -162,12 +180,12 @@ export default function Dashboard() {
                 </span>
                 {selectedYears.map((year, index) => (
                     <div key={year} className="flex items-center gap-2">
-                <Input
-                    type="number"
+                        <Input
+                            type="number"
                             value={year}
                             onChange={e => updateYear(index, e.target.value)}
                             className="w-24 border rounded px-2 py-1"
-                />
+                        />
                         {selectedYears.length > 1 && (
                             <button
                                 onClick={() => removeYear(year)}

@@ -102,8 +102,9 @@ export function Button({
                     ${className}
                     ${addClassName}
                     ${colorComponent}
-                    ${isLoading
-                    ? `
+                    ${
+                        isLoading
+                            ? `
                         text-black
                         hover:bg-gray-400
                         bg-gray-400
@@ -111,8 +112,8 @@ export function Button({
                         border-black
                         font-bold
                     `
-                    : null
-                }`}
+                            : null
+                    }`}
             {...rest}
             disabled={isLoading}
         >

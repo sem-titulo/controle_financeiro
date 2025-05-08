@@ -23,7 +23,7 @@ export default function User() {
                 ? new Date(item.criado_em).toLocaleString('pt-BR', {
                       day: '2-digit',
                       month: '2-digit',
-                      year: 'numeric'
+                      year: 'numeric',
                   })
                 : '',
         }));

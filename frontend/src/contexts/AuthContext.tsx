@@ -81,32 +81,32 @@ export function AuthProvider({ children }) {
         }
     }, [router, isAuthenticated]);
 
-    const signIn = useCallback(
-        async function signIn(data: ISignInData): Promise<boolean> {
-            try {
-                const response = await api.post('/login', data);
-                const { access, info } = response.data;
+    const signIn = useCallback(async function signIn(
+        data: ISignInData,
+    ): Promise<boolean> {
+        try {
+            const response = await api.post('/login', data);
+            const { access, info } = response.data;
 
-                setCookie(undefined, 'finance.token', access, {
-                    maxAge: 60 * 60 * 12 * 1, // 12 horas
-                });
+            setCookie(undefined, 'finance.token', access, {
+                maxAge: 60 * 60 * 12 * 1, // 12 horas
+            });
 
-                api.defaults.headers['Authorization'] = `Bearer ${access}`;
+            api.defaults.headers['Authorization'] = `Bearer ${access}`;
 
-                setIsAuthenticated(true);
+            setIsAuthenticated(true);
 
-                setCookie(undefined, 'finance.user', JSON.stringify(info));
+            setCookie(undefined, 'finance.user', JSON.stringify(info));
 
-                setUser(info);
+            setUser(info);
 
-                return true;
-            } catch (error) {
-                showNotification({ message: 'Login inválido.' });
-                return false;
-            }
-        },
-        [],
-    );
+            return true;
+        } catch (error) {
+            showNotification({ message: 'Login inválido.' });
+            return false;
+        }
+    },
+    []);
 
     const signOut = useCallback(function signOut() {
         cleanCookies();

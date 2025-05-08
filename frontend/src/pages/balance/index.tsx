@@ -11,7 +11,9 @@ import { showNotification } from '../../utils/notification';
 import { Loading } from '../../components/Loading';
 
 interface IFormProps {
-    file_xml: string;
+    mes: string;
+    ano: number;
+    tipo_arquivo: string;
 }
 
 const legends = {

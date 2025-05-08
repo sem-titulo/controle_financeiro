@@ -91,9 +91,10 @@ export default function FormSenders() {
         } catch (error) {
             showNotification({
                 // eslint-disable-next-line prettier/prettier
-                message: `Erro ao ${mode === 'edit' ? 'editar' : 'remover'
+                message: `Erro ao ${
+                    mode === 'edit' ? 'editar' : 'remover'
                     // eslint-disable-next-line prettier/prettier
-                    } empresa.\n${error.response.data.message}`,
+                } empresa.\n${error.response.data.message}`,
             });
         }
     }

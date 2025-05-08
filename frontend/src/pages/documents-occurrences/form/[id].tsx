@@ -97,9 +97,10 @@ function FormDocumentsOccurrences() {
                 } else {
                     showNotification({
                         // eslint-disable-next-line prettier/prettier
-                        message: `Erro ao ${mode === 'edit' ? 'lançar' : 'remover lançamento da'
+                        message: `Erro ao ${
+                            mode === 'edit' ? 'lançar' : 'remover lançamento da'
                             // eslint-disable-next-line prettier/prettier
-                            } ocorrência.\n${error.response.data.message}`,
+                        } ocorrência.\n${error.response.data.message}`,
                     });
                 }
             }

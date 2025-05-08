@@ -10,7 +10,12 @@ interface ISearchbarProps {
     allowMultiple?: boolean;
 }
 
-export function Searchbar({ options = [], filter = {}, setFilter, allowMultiple = false }: ISearchbarProps) {
+export function Searchbar({
+    options = [],
+    filter = {},
+    setFilter,
+    allowMultiple = false,
+}: ISearchbarProps) {
     const [field, setField] = useState('');
     const [text, setText] = useState('');
 
@@ -69,9 +74,13 @@ export function Searchbar({ options = [], filter = {}, setFilter, allowMultiple 
             {allowMultiple && Object.keys(filter).length > 0 && (
                 <div className="flex flex-wrap gap-2">
                     {Object.entries(filter).map(([key, value]) => (
-                        <div key={key} className="flex items-center bg-gray-100 rounded-full px-3 py-1">
+                        <div
+                            key={key}
+                            className="flex items-center bg-gray-100 rounded-full px-3 py-1"
+                        >
                             <span className="text-sm text-gray-700">
-                                {options.find(opt => opt.key === key)?.text}: {value}
+                                {options.find(opt => opt.key === key)?.text}:{' '}
+                                {value}
                             </span>
                             <button
                                 onClick={() => handleClearFilter(key)}

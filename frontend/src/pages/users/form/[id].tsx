@@ -41,12 +41,7 @@ export default function FormUser() {
         id === 'new' ? 'insert' : 'read',
     );
 
-    const {
-        handleSubmit,
-        register,
-        formState,
-        reset,
-    } = useForm<IUser>({
+    const { handleSubmit, register, formState, reset } = useForm<IUser>({
         resolver: yupResolver(schema),
     });
 
@@ -69,7 +64,9 @@ export default function FormUser() {
             router.push(baseRoute);
         } catch (error) {
             showNotification({
-                message: `Erro ao salvar usuário.\n${error.response?.data?.message || ''}`,
+                message: `Erro ao salvar usuário.\n${
+                    error.response?.data?.message || ''
+                }`,
             });
         }
     };
@@ -94,7 +91,9 @@ export default function FormUser() {
             Router.push(baseRoute);
         } catch (error) {
             showNotification({
-                message: `Erro ao remover usuário.\n${error.response?.data?.message || ''}`,
+                message: `Erro ao remover usuário.\n${
+                    error.response?.data?.message || ''
+                }`,
             });
         }
     }

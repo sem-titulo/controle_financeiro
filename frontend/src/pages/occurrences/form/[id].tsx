@@ -83,7 +83,9 @@ export default function FormOccurrences() {
                     } else {
                         showNotification({
                             // eslint-disable-next-line prettier/prettier
-                            message: `Erro ao ${mode === 'edit' ? 'editar' : 'remover'} ocorrência.\n${error.response.data.message}`,
+                            message: `Erro ao ${
+                                mode === 'edit' ? 'editar' : 'remover'
+                            } ocorrência.\n${error.response.data.message}`,
                         });
                     }
                 }
